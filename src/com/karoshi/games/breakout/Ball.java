@@ -1,6 +1,7 @@
 package com.karoshi.games.breakout;
 
 // Class for Ball objects in Breakout project
+// Best comment ever!
 public class Ball {
 	
 	static final float BALL_DIMENSION = 32.0f;
