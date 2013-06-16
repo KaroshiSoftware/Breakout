@@ -12,8 +12,15 @@ public class Assets {
     public static Sound top_sound;   
     public static Sound side_sound;  
     public static Sound paddle_sound;      
-    
-/*    public static Sound ladies;
+    public static Pixmap logo;
+    public static Pixmap loading_background;
+    public static Pixmap brick_red;    
+    public static Pixmap brick_blue; 
+    public static Pixmap brick_green;     
+    public static Pixmap brick_yellow;    
+    public static Pixmap brick_orange; 
+    public static Pixmap brick_purple; 
+    /*    public static Sound ladies;
     public static Sound testicles;
     public static Sound hello;
     public static Sound sister;

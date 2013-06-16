@@ -17,7 +17,6 @@ public class MainMenuScreen extends Screen {
 
     @Override
     public void update(float deltaTime) {
-        Graphics g = game.getGraphics();
         List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
         game.getInput().getKeyEvents();       
         
@@ -47,11 +46,9 @@ public class MainMenuScreen extends Screen {
     public void present(float deltaTime) {
         Graphics g = game.getGraphics();
         
-        g.drawPixmap(Assets.background, 0, 0);
-        //g.drawPixmap(Assets.logo, 50, 10);
+        g.drawPixmap(Assets.loading_background, 0, 0);
+        g.drawPixmap(Assets.logo, 25, 100);
         
-        //draw stuff here      
-        //g.drawRect(460, 0, 20, 20, 0xff00ff00);
     }
 
     @Override

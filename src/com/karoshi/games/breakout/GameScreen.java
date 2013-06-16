@@ -70,11 +70,11 @@ public class GameScreen extends Screen {
                 }
             }
             if(event.type == TouchEvent.TOUCH_DRAGGED) {
-            	int paddle_x = world.paddle.getPaddleX();
-            	int length_x = world.paddle.getLengthPaddle();
-            	int paddle_y = world.paddle.getPaddleY();
-                if(event.x >= paddle_x && event.x <= paddle_x + length_x) {
-                    world.paddle.setPaddleX(event.x - length_x/2);
+            	int paddleX = world.paddle.getPaddleX();
+            	int lengthX = world.paddle.getLengthPaddle();
+            	int paddleY = world.paddle.getPaddleY();
+                if(event.x >= paddleX && event.x <= paddleX + lengthX && event.y >= paddleY) {
+                    world.paddle.setPaddleX(event.x - lengthX/2);
                 }
             }            
         }
@@ -160,7 +160,33 @@ public class GameScreen extends Screen {
         int paddleY = world.paddle.getPaddleY();
         
         g.drawPixmap(Assets.ball, ballX, ballY);
-        g.drawPixmap(Assets.paddle, paddleX, paddleY);        
+        g.drawPixmap(Assets.paddle, paddleX, paddleY);
+        
+        for (int x = 0; x < world.NUM_BRICKS; x++)
+        {
+        	if (world.bricks[x].isExists()) {
+	        	switch (world.bricks[x].getColor()) {
+	        	case RED:
+	        		g.drawPixmap(Assets.brick_red, world.bricks[x].getBrickX(), world.bricks[x].getBrickY());
+	        		break;
+	        	case YELLOW:
+	        		g.drawPixmap(Assets.brick_yellow, world.bricks[x].getBrickX(), world.bricks[x].getBrickY());
+	        		break;
+	        	case BLUE:
+	        		g.drawPixmap(Assets.brick_blue, world.bricks[x].getBrickX(), world.bricks[x].getBrickY());
+	        		break;
+	        	case GREEN:
+	        		g.drawPixmap(Assets.brick_green, world.bricks[x].getBrickX(), world.bricks[x].getBrickY());
+	        		break;
+	        	case ORANGE:
+	        		g.drawPixmap(Assets.brick_orange, world.bricks[x].getBrickX(), world.bricks[x].getBrickY());
+	        		break;
+	        	case PURPLE:
+	        		g.drawPixmap(Assets.brick_purple, world.bricks[x].getBrickX(), world.bricks[x].getBrickY());
+	        		break;
+	        	}
+        	}
+        }
 /*        Snake snake = world.snake;
         SnakePart head = snake.parts.get(0);
         Stain stain = world.stain;

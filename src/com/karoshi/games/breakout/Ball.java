@@ -1,14 +1,18 @@
 package com.karoshi.games.breakout;
 
 // Class for Ball objects in Breakout project
-// Best comment ever!
 public class Ball {
 	
 	static final float BALL_DIMENSION = 32.0f;
     
     private float ballX = 240.0f - BALL_DIMENSION/2;
     private float ballY = 160.0f - BALL_DIMENSION/2;
+
+    private float ballLeft = ballX;
     private float ballCenter = ballX + BALL_DIMENSION/2;
+    private float ballRight = ballX + BALL_DIMENSION; 
+    private float ballTop = ballY;
+    
     private float xDirection = 0.4f;
     private float yDirection = 1.5f;
     
@@ -27,11 +31,15 @@ public class Ball {
 		return (int)(ballX + BALL_DIMENSION/2.0);
 	}    
     	
-	public void move(int paddleX) {
+	public void move(int paddleX, Brick[] bricks) {
 		// TODO Auto-generated method stub
     	ballX += xDirection;
     	ballY += yDirection;
+    	
+    	ballLeft = ballX;
     	ballCenter = ballX + BALL_DIMENSION/2;
+    	ballRight = ballX + BALL_DIMENSION;
+    	ballTop = ballY;
     	
     	float paddleCenter = paddleX + Paddle.PADDLE_DIMENSION_X/2;
 
@@ -49,6 +57,18 @@ public class Ball {
     	if( ballY > 320 - BALL_DIMENSION ) {
     		yDirection *= -1;
     		Assets.bottom_sound.play(1);      		
+    	}
+    	
+    	//check for collision with bricks
+    	for (int i = 0; i < World.NUM_BRICKS; i++)
+    	{
+    		if ( ballTop <= bricks[i].getBrickBottom() && ballLeft >= bricks[i].getBrickLeft() && ballRight <= bricks[i].getBrickRight() && bricks[i].isExists())
+    		{
+    			yDirection *= -1;
+    			Assets.top_sound.play(1);
+    			bricks[i].setExists(false);
+    			break;
+    		}	
     	}
 
     	//if the ball is within the x bound of the paddle
